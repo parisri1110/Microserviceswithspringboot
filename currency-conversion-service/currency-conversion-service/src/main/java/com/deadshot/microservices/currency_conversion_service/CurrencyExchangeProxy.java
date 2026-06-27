@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
  * that's why name is given
  * */
 
-@FeignClient(name = "currency-exchange" , url="localhost:8000")
+// To introduce Load balancer so that naming server distributes the load to different instances 
+//@FeignClient(name = "currency-exchange" , url="localhost:8000")
+@FeignClient(name = "currency-exchange")
 public interface CurrencyExchangeProxy {
 
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
