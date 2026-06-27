@@ -17,3 +17,69 @@ That's where a concept called naming server or service registry comes into pictu
 Let's say I have a few microservices, currency conversion microservice, currency exchange microservice, or other microservices.
 Whenever a microservice comes up, what it can do is it can register with this service registry.So when currency conversion service comes up,it will register with this service registry.
 If it has five instances, all the five instances will register with the name as currency conversion with this service registry.
+
+The same thing will be done by other microservices like currency exchange as well.
+what is the advantage of doing that?
+
+The service registry knows all the current locations of the microservices.
+What is the advantage of that?
+
+The advantage is that when a service wants to talk to another service,when currency conversion service wants to talk to currency exchange service,it can actually talk to the naming server.
+
+The currency conversion service can talk to the naming server through the load balancer, so it can figure out what are the current instances,current available instances of currency exchange,
+and it can distribute the load among them as well.
+
+So what we are talking about here is that
+
+whenever currency conversion service wants to talk to the currency exchange service,it can talk to the naming server, figure out what are the current available currency exchange instances, and load balance between those instances.
+
+Let's say a specific instance goes down. What happens is that the naming server would find out, the service registry would find out that the instance went down,
+and therefore when the next request comes from currency conversion,
+
+it would say, "Hey, there are only two active instances, instance 1 and instance 2. Instance 3 is now down"
+
+So the load would eventually be distributed only between instance 1 and instance 2, which are the currently active instances.
+
+Let's say at a later point in time,
+
+Currency Exchange - Instance 3 comes up.
+
+What does it do?
+
+It would immediately register with the naming server.
+
+And within a few minutes,
+
+you would see that the load balancer
+
+would start distributing load between all the three active instances.
+
+So what we are talking about here
+
+is the fact that when you add a naming server in,
+
+all the microservices can register with the naming server
+
+or the service registry.
+
+And whenever two microservices need to talk to each other,
+
+the communication would go through the naming server.
+
+The service consumer will always talk to the naming server,
+
+figure out what are the active instances
+
+of the service provider,
+
+and it would distribute the load
+
+between the active instances of the service provider.
+
+Now that we got a 10,000-feet overview of the concept
+
+of a naming server or a service registry,
+
+are you ready to go ahead and implement it?
+
+I will see you in the next step.
