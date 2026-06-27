@@ -1,0 +1,19 @@
+What would you need to do to get the currency conversion microservice to talk to the currency exchange microservice?
+You need to make a code change in the currency conversion microservice.
+
+You need to go to the code of Currency Conversion Service, and you need to change the URL to point to the new URL of currency exchange microservice.
+
+That's not good, why?
+
+Because whenever we are talking about microservices, there can be thousands of microservices.Every time the URL of a microservice changes,you don't want to hard code it in another microservice.
+You don't want to make a code change or a configuration change in another microservice.
+
+We would want to build a solution where currency conversion microservice will be able to find the current location of currency exchange microservice automatically.
+
+How can we do that?
+
+That's where a concept called naming server or service registry comes into picture.
+
+Let's say I have a few microservices, currency conversion microservice, currency exchange microservice, or other microservices.
+Whenever a microservice comes up, what it can do is it can register with this service registry.So when currency conversion service comes up,it will register with this service registry.
+If it has five instances, all the five instances will register with the name as currency conversion with this service registry.
